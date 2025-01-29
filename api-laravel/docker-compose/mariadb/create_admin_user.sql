@@ -1,5 +1,5 @@
-CREATE USER 'admin'@'%' IDENTIFIED BY 'TrackTime20*';
-GRANT ALL PRIVILEGES ON *.* TO 'gestion-stock'@'%' WITH GRANT OPTION;
+CREATE USER 'track-time'@'%' IDENTIFIED BY 'TrackTime20*';
+GRANT ALL PRIVILEGES ON *.* TO 'track-time'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 CREATE USER 'laravel'@'%' IDENTIFIED BY 'TrackTime20*';
