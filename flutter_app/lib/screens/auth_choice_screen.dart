@@ -12,7 +12,7 @@ class AuthChoiceScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/signUp');  // Redirige vers l'écran d'inscription
+                Navigator.pushNamed(context, '/register');  // Redirige vers l'écran d'inscription
               },
               child: Text('S\'inscrire'),
             ),

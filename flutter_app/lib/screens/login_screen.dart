@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/services/auth_service.dart'; 
+import 'package:flutter_app/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
+  final AuthService authService;
+
+  LoginScreen({required this.authService});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -9,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _authService = AuthService();
   bool _isLoading = false;
 
   void _login() async {
@@ -18,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      final response = await _authService.login(
+      final response = await widget.authService.login(
         _emailController.text,
         _passwordController.text,
       );

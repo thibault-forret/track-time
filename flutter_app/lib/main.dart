@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home_screen.dart';
 import 'package:flutter_app/screens/login_screen.dart';
-// import 'package:flutter_app/screens/register_screen.dart';
+import 'package:flutter_app/screens/register_screen.dart';
 import 'package:flutter_app/services/auth_service.dart';
+import 'package:flutter_app/screens/auth_choice_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,12 +21,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'TrackTime',
       home: AuthRedirect(authService: authService),
       routes: {
         '/home': (context) => HomeScreen(authService: authService),
-        '/login': (context) => LoginScreen(), // authService: authService
-        // '/register': (context) => RegisterScreen(authService: authService),
+        '/auth_choice' : (context) => AuthChoiceScreen(),
+        '/login': (context) => LoginScreen(authService: authService),
+        '/register': (context) => RegisterScreen(authService: authService),
       },
     );
   }
@@ -47,7 +50,7 @@ class AuthRedirect extends StatelessWidget {
     } else {
       // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
       Future.microtask(() {
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushReplacementNamed(context, '/auth_choice');
       });
     }
 

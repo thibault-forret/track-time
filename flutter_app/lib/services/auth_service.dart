@@ -67,7 +67,7 @@ class AuthService {
       });
 
       // Vérification si l'inscription a réussi
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         // Connexion immédiate après l'inscription
         bool loginSuccess = await login(email, password); // Appel de la méthode login pour connecter l'utilisateur
 

@@ -6,30 +6,25 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({required this.authService});
 
+  void _logout(BuildContext context) {
+    authService.logout();
+    Navigator.pushReplacementNamed(context, '/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Accueil')),
+      appBar: AppBar(
+        title: Text('Accueil'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () => _logout(context),
+          ),
+        ],
+      ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Bienvenue, vous êtes connecté !'),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                // Appel de la méthode logout pour déconnecter l'utilisateur
-                await authService.logout();
-
-                // Ajouter un chargement pendant la déconnexion
-
-                // Rediriger vers la page de connexion après la déconnexion
-                Navigator.pushReplacementNamed(context, '/login');
-              },
-              child: Text('Se déconnecter'),
-            ),
-          ],
-        ),
+        child: Text('Bienvenue, vous êtes connecté !'),
       ),
     );
   }
