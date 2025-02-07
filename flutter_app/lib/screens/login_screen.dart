@@ -20,18 +20,41 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
 
-    try {
-      await widget.authService.login(
+    try 
+    {
+      Map<String, dynamic> response = await widget.authService.login(
         _emailController.text,
         _passwordController.text,
       );
 
-      Navigator.pushReplacementNamed(context, '/home');
-    } catch (e) {
+      if (response['success']) 
+      {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Connexion réussie.')),
+        );
+
+        Navigator.pushReplacementNamed(context, '/home');
+      } 
+      else 
+      {
+        // Gérez lorsque les infos de connexion sont incorrectes
+        
+        var errorMessage = response['errors'] ?? 'Une erreur est survenue lors de la connexion. Veuillez réessayer.';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage)),
+        );
+      }
+    } 
+    catch (e) 
+    {
+      String errorMessage = "Une erreur est survenue. Veuillez réessayer.";
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erreur: $e')),
+        SnackBar(content: Text(errorMessage)),
       );
-    } finally {
+    } 
+    finally 
+    {
       setState(() {
         _isLoading = false;
       });

@@ -45,10 +45,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
         // Vérifier si l'utilisateur bien connecté
         if (response['login']) 
         {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Inscription réussie.')),
+          );
+
           Navigator.pushReplacementNamed(context, '/home');
         } 
         else 
         {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Inscription réussie, cependant une erreur est survenue lors de la connexion automatique, veuillez vous connecter.')),
+          );
+
           Navigator.pushReplacementNamed(context, '/login');
         }
       }
@@ -64,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }
         else 
         {
-          errorMessage = response['errors'];
+          errorMessage = response['errors'] ?? 'Une erreur est survenue. Veuillez réessayer.';;
         }
 
         // Modifier le système qui affiche les messages d'erreur, les mettres en dur pour pas qu'elles disparaissent
