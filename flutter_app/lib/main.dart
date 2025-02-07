@@ -8,7 +8,9 @@ import 'package:flutter_app/screens/auth_choice_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final authService = AuthService();
-  await authService.loadToken();  // Charger le token d'authentification
+
+  // Charge le token d'authentification si il y en a un
+  await authService.loadToken();
 
   runApp(MyApp(authService));
 }

@@ -21,15 +21,16 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      final response = await widget.authService.login(
+      await widget.authService.login(
         _emailController.text,
         _passwordController.text,
       );
 
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
-      // Gérer l'erreur ici, par exemple en affichant un message
-      print('Erreur: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erreur: $e')),
+      );
     } finally {
       setState(() {
         _isLoading = false;

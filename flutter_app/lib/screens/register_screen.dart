@@ -46,12 +46,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (response['login']) 
         {
           Navigator.pushReplacementNamed(context, '/home');
-          return;
         } 
         else 
         {
           Navigator.pushReplacementNamed(context, '/login');
-          return;
         }
       }
       else

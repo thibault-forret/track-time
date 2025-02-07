@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   void _logout(BuildContext context) {
     authService.logout();
-    Navigator.pushReplacementNamed(context, '/login');
+    Navigator.pushReplacementNamed(context, '/auth_choice');
   }
 
   @override
