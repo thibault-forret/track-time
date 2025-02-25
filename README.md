@@ -11,3 +11,4 @@ Track Time est une application de bureau permettant de calculer automatiquement 
 - **Backend** : API Laravel  
 - **Base de données** : MariaDB
 - **Outils** : Docker
+- **Plateformes cibles** : Bureau (Windows, Linux, macOS)
